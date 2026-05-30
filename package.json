@@ -1,0 +1,12 @@
+{
+  "name": "@jrapps/ui-components",
+  "version": "1.0.0",
+  "description": "Common UI Components",
+  "license": "ISC",
+  "author": "Josh Roberts",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "dev"
+  }
+}
