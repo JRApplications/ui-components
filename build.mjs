@@ -74,8 +74,8 @@ const sharedConfig = {
   bundle: true,
   sourcemap: true,
   external,
-  // Preserve JSX so consuming apps can configure their own transform
-  jsx: 'preserve',
+  // Transform JSX at build time so published .js files contain no raw JSX syntax
+  jsx: 'automatic',
   target: ['es2018'],
   logLevel: 'info',
 };
