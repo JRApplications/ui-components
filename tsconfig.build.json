@@ -4,8 +4,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "dist/types",
-
-    // Emit declarations only — esbuild handles the JS
+    "rootDir": "src",
     "declaration": true,
     "declarationMap": true,
     "emitDeclarationOnly": true,
