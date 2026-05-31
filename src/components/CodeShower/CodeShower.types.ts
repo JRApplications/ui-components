@@ -1,4 +1,4 @@
-export interface ComponentProps {
+export interface CodeShowerProps {
     code: string;
     title: string;
 }

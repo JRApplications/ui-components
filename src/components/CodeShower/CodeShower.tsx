@@ -1,24 +1,21 @@
-import React, { type FC } from 'react';
+import React from 'react';
 import { Highlight, themes } from 'prism-react-renderer';
 import { Box, Heading, TextButton } from '@wix/design-system';
 
-import { ComponentProps } from './component.types';
+import { CodeShowerProps } from './CodeShower.types';
+import { useCodeShower } from './useCodeShower';
 import './component.css';
 
-const CodeShower: React.FC<ComponentProps> = ({ code, title }) => {
-    const [widgetCodeCopy, setWidgetCodeCopy] = React.useState(false);
+export const CodeShower = React.forwardRef<HTMLDivElement, CodeShowerProps>(({ 
+    code, 
+    title 
+}, ref) => {
+    const { widgetCodeCopy, handleCopyCode } = useCodeShower(code);
     return (
-        <Box direction='vertical' gap={'10px'} width={'100%'}>
+        <Box direction='vertical' gap={'10px'} width={'100%'} ref={ref}>
             <Box align='center' direction='horizontal' WebkitJustifyContent='space-between' verticalAlign='middle'>
                 <Heading>{title}</Heading>
-                <TextButton size='small' onClick={() => {
-                    navigator.clipboard.writeText(code).then(() => {
-                        setWidgetCodeCopy(true);
-                        setTimeout(() => setWidgetCodeCopy(false), 2000);
-                    }).catch(err => {
-                        console.error('Failed to copy code: ', err);
-                    });
-                }}>
+                <TextButton size='small' onClick={handleCopyCode}>
                     {widgetCodeCopy ? 'Code Copied!' : 'Copy Code'}
                 </TextButton>
             </Box>
@@ -37,6 +34,6 @@ const CodeShower: React.FC<ComponentProps> = ({ code, title }) => {
             </Highlight>
         </Box>
     )
-}
+});
 
-export default CodeShower;
+CodeShower.displayName = 'CodeShower';

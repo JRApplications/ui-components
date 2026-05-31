@@ -5,15 +5,31 @@
   "license": "ISC",
   "author": "Josh Roberts",
   "type": "commonjs",
-  "main": "index.js",
+  "main":   "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types":  "dist/types/index.d.ts",
   "scripts": {
-    "test": "dev"
+    "build":            "node build.mjs",
+    "build:watch":      "node build.mjs --watch",
+    "create:component": "node scripts/create-component.mjs"
   },
   "devDependencies": {
-    "@types/react": "^19.2.15",
-    "react": "^19.2.6"
+    "@types/react": "^18.0.28",
+    "esbuild": "^0.21.0"
   },
   "dependencies": {
+    "@wix/design-system": "^1.283.0",
     "prism-react-renderer": "^2.4.1"
+  },
+  "peerDependencies": {
+    "react": ">=17",
+    "react-dom": ">=17"
+  },
+  "exports": {
+    ".": {
+      "import":  "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types":   "./dist/types/index.d.ts"
+    }
   }
 }
