@@ -4,7 +4,7 @@ import { Box, Heading, TextButton } from '@wix/design-system';
 
 import { CodeShowerProps } from './CodeShower.types';
 import { useCodeShower } from './useCodeShower';
-import './component.css';
+import './CodeShower.css';
 
 export const CodeShower = React.forwardRef<HTMLDivElement, CodeShowerProps>(({ 
     code, 
