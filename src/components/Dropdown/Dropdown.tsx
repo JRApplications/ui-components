@@ -10,6 +10,8 @@ function buildDropdownVars(
   listStyle?: DropdownListStyle,
 ): React.CSSProperties {
   const vars: Record<string, string> = {};
+
+  // styles
   if (triggerStyle) {
     const { background, border, text, icon } = triggerStyle;
     if (background) vars['--jrapps_dd_trigger_bg'] = background;
