@@ -16,6 +16,7 @@ import { execSync } from 'child_process';
 import { readFileSync, readdirSync, rmSync, existsSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { createHash } from 'crypto';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const pkg = JSON.parse(readFileSync(resolve(__dirname, 'package.json'), 'utf8'));
@@ -59,6 +60,34 @@ function entryPoints() {
   return entries;
 }
 
+// ---------------------------------------------------------------------------
+// CSS inject plugin — converts CSS imports into runtime <style> injection
+// so consumers don't need to import a separate .css file.
+// ---------------------------------------------------------------------------
+
+const cssInjectPlugin = {
+  name: 'css-inject',
+  setup(build) {
+    build.onLoad({ filter: /\.css$/ }, (args) => {
+      const css = readFileSync(args.path, 'utf8');
+      const id = 'jrapps-style-' + createHash('sha1').update(args.path).digest('hex').slice(0, 8);
+      const escaped = JSON.stringify(css);
+      const escapedId = JSON.stringify(id);
+      return {
+        contents: [
+          `if (typeof document !== 'undefined' && !document.getElementById(${escapedId})) {`,
+          `  const s = document.createElement('style');`,
+          `  s.id = ${escapedId};`,
+          `  s.textContent = ${escaped};`,
+          `  document.head.appendChild(s);`,
+          `}`,
+        ].join('\n'),
+        loader: 'js',
+      };
+    });
+  },
+};
+
 // Packages that should never be bundled into the output
 const external = [
   ...Object.keys(pkg.peerDependencies ?? {}),
@@ -78,6 +107,7 @@ const sharedConfig = {
   jsx: 'automatic',
   target: ['es2018'],
   logLevel: 'info',
+  plugins: [cssInjectPlugin],
 };
 
 // ---------------------------------------------------------------------------
@@ -138,6 +168,7 @@ async function watch() {
   const watchConfig = {
     ...sharedConfig,
     plugins: [
+      cssInjectPlugin,
       {
         name: 'rebuild-notify',
         setup(build) {
