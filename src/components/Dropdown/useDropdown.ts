@@ -7,7 +7,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import type { DropdownOption } from './Dropdown.types';
 
-export function useDropdown(onSelect: (id: string | number) => void, options?: DropdownOption[], placeHolder?: string, selectedId?: string | number) {
+export function useDropdown(onSelect: (option: DropdownOption) => void, options?: DropdownOption[], placeHolder?: string, selectedId?: string | number) {
   const [isOpen, setIsOpen] = useState(false);
   const triggerRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
@@ -22,7 +22,7 @@ export function useDropdown(onSelect: (id: string | number) => void, options?: D
 
   const selectOption = useCallback((option: DropdownOption) => {
     setIsOpen(false);
-    onSelectRef.current(option.id);
+    onSelectRef.current(option);
   }, []);
 
   useEffect(() => {

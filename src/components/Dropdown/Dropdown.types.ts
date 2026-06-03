@@ -41,7 +41,7 @@ export interface DropdownProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onS
   placeHolder?: string;
   options?: DropdownOption[];
   selectedId?: string | number;
-  onSelect?: (id: string | number) => void;
+  onSelect?: (option: DropdownOption) => void;
   style?: React.CSSProperties;
   className?: string;
   width?: number | string;
