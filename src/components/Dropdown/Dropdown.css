@@ -1,0 +1,163 @@
+.jrapps-dropdown {
+  --jrapps_dropdown_color_11: 255, 255, 255;
+  --jrapps_dropdown_color_13: 199, 199, 199;
+  --jrapps_dropdown_color_14: 0, 0, 0;
+  --jrapps_dropdown_color_15: 0, 0, 0;
+
+  --jrapps_dropdown_bg: var(--jrapps_dropdown_color_11);
+  --jrapps_dropdown_txt: var(--jrapps_dropdown_color_15);
+  --jrapps_dropdown_alpha_txt: 1;
+
+  --jrapps_dropdown_brw: 1px;
+  --jrapps_dropdown_brd: var(--jrapps_dropdown_color_15);
+  --jrapps_dropdown_alpha_brd: 0.6;
+
+  --jrapps_dropdown_brwh: 1px;
+  --jrapps_dropdown_brdh: var(--jrapps_dropdown_color_15);
+  --jrapps_dropdown_alpha_brdh: 1;
+  --jrapps_dropdown_bgh: var(--jrapps_dropdown_color_11);
+
+  --jrapps_dropdown_brwf: 1px;
+  --jrapps_dropdown_brdf: var(--jrapps_dropdown_color_15);
+  --jrapps_dropdown_alpha_brdf: 1;
+  --jrapps_dropdown_bgf: var(--jrapps_dropdown_color_11);
+
+  --jrapps_dropdown_arrowColor: var(--jrapps_dropdown_color_15);
+  --jrapps_dropdown_alpha_arrowColor: 1;
+
+  --jrapps_dropdownListBoxShadow: none;
+  --jrapps_dropdownListStrokeWidth: 2px;
+  --jrapps_dropdownListFont: normal normal normal 14px/1.4em sans-serif;
+  --jrapps_dropdownListBorderRadius: 0;
+  --jrapps_dropdownListTextColor: 0, 0, 0;
+  --jrapps_dropdown_alphaListTextColor: 1;
+  --jrapps_dropdownListBackgroundColor: var(--jrapps_dropdown_color_11);
+  --jrapps_dropdown_alphaListBackgroundColor: 1;
+  --jrapps_dropdownListStrokeColor: 145, 145, 145;
+  --jrapps_dropdown_alphaListStrokeColor: 1;
+  --jrapps_dropdownListHoverBackgroundColor: 242, 250, 249;
+  --jrapps_dropdown_alphaListHoverBackgroundColor: 1;
+  --jrapps_dropdownListHoverTextColor: 0, 0, 0;
+  --jrapps_dropdown_alphaListHoverTextColor: 1;
+
+  --jrapps_dropdown_fnt: normal normal normal 16px/1.4em sans-serif;
+  --jrapps_dropdown_align: start;
+  --jrapps_dropdown_direction: ltr;
+
+  --jrapps_dropdown_textPaddingInput_start: 12px;
+  --jrapps_dropdown_textPaddingInput_end: 48px;
+
+  --jrapps_dropdown_aboveAllZIndex: 100000;
+
+  --jrapps_dropdown_width: 170px;
+  --jrapps_dropdown_height: 33px;
+}
+
+.jrapps-dropdown {
+  position: relative;
+  /* CSS vars are declared on this element so each instance is independently scoped */
+  width: var(--jrapps_dropdown_width);
+  height: var(--jrapps_dropdown_height);
+  min-height: var(--jrapps_dropdown_height);
+  display: flex;
+  flex-direction: column;
+  text-align: var(--jrapps_dropdown_align);
+  text-align-last: var(--jrapps_dropdown_align);
+  direction: var(--jrapps_dropdown_direction);
+  user-select: none;
+}
+
+.jrapps-dropdown__trigger {
+  position: relative;
+  width: var(--jrapps_dropdown_width);
+  height: var(--jrapps_dropdown_height);
+  padding-left: var(--jrapps_dropdown_textPaddingInput_start);
+  padding-right: var(--jrapps_dropdown_textPaddingInput_end);
+  font: var(--jrapps_dd_trigger_font, var(--jrapps_dropdown_fnt));
+  color: var(--jrapps_dd_trigger_color, rgba(var(--jrapps_dropdown_txt), var(--jrapps_dropdown_alpha_txt)));
+  background-color: var(--jrapps_dd_trigger_bg, rgb(var(--jrapps_dropdown_bg)));
+  border-width: var(--jrapps_dd_trigger_border_width, var(--jrapps_dropdown_brw));
+  border-style: solid;
+  border-color: var(--jrapps_dd_trigger_border_color, rgba(var(--jrapps_dropdown_brd), var(--jrapps_dropdown_alpha_brd)));
+  border-radius: var(--jrapps_dd_trigger_border_radius, 0);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: var(--jrapps_dropdown_height);
+  cursor: pointer;
+}
+
+.jrapps-dropdown__trigger:hover {
+  border-color: var(--jrapps_dd_trigger_border_color, rgba(var(--jrapps_dropdown_brdh), var(--jrapps_dropdown_alpha_brdh)));
+  background-color: var(--jrapps_dd_trigger_bg, rgb(var(--jrapps_dropdown_bgh)));
+}
+
+.jrapps-dropdown__trigger.open {
+  border-color: var(--jrapps_dd_trigger_border_color, rgba(var(--jrapps_dropdown_brdf), var(--jrapps_dropdown_alpha_brdf)));
+  background-color: var(--jrapps_dd_trigger_bg, rgb(var(--jrapps_dropdown_bgf)));
+}
+
+.jrapps-dropdown__icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--jrapps_dd_icon_color, rgba(var(--jrapps_dropdown_arrowColor), var(--jrapps_dropdown_alpha_arrowColor)));
+  display: flex;
+  align-items: center;
+  transition: transform .15s ease;
+}
+
+.jrapps-dropdown__trigger.open .jrapps-dropdown__icon {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.jrapps-dropdown__list {
+  display: none;
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  width: var(--jrapps_dropdown_width);
+  background-color: var(--jrapps_dd_list_bg, rgb(var(--jrapps_dropdownListBackgroundColor)));
+  border-width: var(--jrapps_dd_list_border_width, var(--jrapps_dropdownListStrokeWidth));
+  border-style: solid;
+  border-color: var(--jrapps_dd_list_border_color, rgba(var(--jrapps_dropdownListStrokeColor), var(--jrapps_dropdown_alphaListStrokeColor)));
+  border-radius: var(--jrapps_dd_list_border_radius, var(--jrapps_dropdownListBorderRadius));
+  box-shadow: var(--jrapps_dd_list_shadow, var(--jrapps_dropdownListBoxShadow));
+  z-index: var(--jrapps_dropdown_aboveAllZIndex);
+}
+
+.jrapps-dropdown__list.open {
+  display: block;
+}
+
+.jrapps-dropdown__option {
+  padding: 0 12px;
+  height: 36px;
+  line-height: 36px;
+  font: var(--jrapps_dd_list_font, var(--jrapps_dropdownListFont));
+  color: var(--jrapps_dd_list_color, rgba(var(--jrapps_dropdownListTextColor), var(--jrapps_dropdown_alphaListTextColor)));
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.jrapps-dropdown__option-text {
+  pointer-events: none;
+}
+
+.jrapps-dropdown__option:hover {
+  background-color: var(--jrapps_dd_option_hover_bg, rgba(var(--jrapps_dropdownListHoverBackgroundColor), var(--jrapps_dropdown_alphaListHoverBackgroundColor)));
+  color: var(--jrapps_dd_option_hover_color, rgba(var(--jrapps_dropdownListHoverTextColor), var(--jrapps_dropdown_alphaListHoverTextColor)));
+}
+
+.jrapps-dropdown__option.focused {
+  background-color: var(--jrapps_dd_option_selected_bg, var(--jrapps_dd_option_hover_bg, rgba(var(--jrapps_dropdownListHoverBackgroundColor), var(--jrapps_dropdown_alphaListHoverBackgroundColor))));
+  color: var(--jrapps_dd_option_selected_color, var(--jrapps_dd_option_hover_color, rgba(var(--jrapps_dropdownListHoverTextColor), var(--jrapps_dropdown_alphaListHoverTextColor))));
+}
