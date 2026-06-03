@@ -31,7 +31,7 @@ const CustomElement: FC<Props> = ({
           { id: 2, value: 'Banana' },
           { id: 3, value: 'Cherry' },
         ]}
-        onSelect={(val) => setSelected(val)}
+        onSelect={(option) => setSelected(option.id)}
         placeHolder="Pick a fruit…"
         triggerStyle={{
           background: '#1a1a2e',
@@ -57,7 +57,7 @@ const CustomElement: FC<Props> = ({
           { id: 2, value: 'Banana' },
           { id: 3, value: 'Cherry' },
         ]}
-        onSelect={(val) => setSelected(val)}
+        onSelect={(option) => setSelected(option.id)}
         placeHolder="Pick a fruit…"
       />
     </div>
