@@ -11,6 +11,8 @@ export function useDropdown(onSelect: (id: string | number) => void, options?: D
   const [isOpen, setIsOpen] = useState(false);
   const triggerRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
+  const onSelectRef = useRef(onSelect);
+  onSelectRef.current = onSelect;
 
   const selectedOption = options?.find(o => o.id === selectedId);
   const selectedLabel = selectedOption ? selectedOption.value : (placeHolder ?? '');
@@ -20,8 +22,8 @@ export function useDropdown(onSelect: (id: string | number) => void, options?: D
 
   const selectOption = useCallback((option: DropdownOption) => {
     setIsOpen(false);
-    onSelect(option.id);
-  }, [onSelect]);
+    onSelectRef.current(option.id);
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
