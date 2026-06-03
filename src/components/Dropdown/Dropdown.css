@@ -71,8 +71,6 @@
   position: relative;
   width: var(--jrapps_dropdown_width);
   height: var(--jrapps_dropdown_height);
-  padding-left: var(--jrapps_dropdown_textPaddingInput_start);
-  padding-right: var(--jrapps_dropdown_textPaddingInput_end);
   font: var(--jrapps_dd_trigger_font, var(--jrapps_dropdown_fnt));
   color: var(--jrapps_dd_trigger_color, rgba(var(--jrapps_dropdown_txt), var(--jrapps_dropdown_alpha_txt)));
   background-color: var(--jrapps_dd_trigger_bg, rgb(var(--jrapps_dropdown_bg)));
@@ -85,6 +83,10 @@
   text-overflow: ellipsis;
   line-height: var(--jrapps_dropdown_height);
   cursor: pointer;
+}
+
+.jrapps-dropdown__trigger_label {
+  margin-left: 10px;
 }
 
 .jrapps-dropdown__trigger:hover {
@@ -118,7 +120,7 @@
   position: absolute;
   top: calc(100% + 2px);
   left: 0;
-  width: var(--jrapps_dropdown_width);
+  width: 100%;
   background-color: var(--jrapps_dd_list_bg, rgb(var(--jrapps_dropdownListBackgroundColor)));
   border-width: var(--jrapps_dd_list_border_width, var(--jrapps_dropdownListStrokeWidth));
   border-style: solid;
