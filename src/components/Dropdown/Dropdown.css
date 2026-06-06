@@ -160,6 +160,6 @@
 }
 
 .jrapps-dropdown__option.focused {
-  background-color: var(--jrapps_dd_option_selected_bg, var(--jrapps_dd_option_hover_bg, rgba(var(--jrapps_dropdownListHoverBackgroundColor), var(--jrapps_dropdown_alphaListHoverBackgroundColor))));
-  color: var(--jrapps_dd_option_selected_color, var(--jrapps_dd_option_hover_color, rgba(var(--jrapps_dropdownListHoverTextColor), var(--jrapps_dropdown_alphaListHoverTextColor))));
+  background-color: var(--jrapps_dd_option_selected_bg, rgba(var(--jrapps_dropdownListHoverBackgroundColor), var(--jrapps_dropdown_alphaListHoverBackgroundColor)));
+  color: var(--jrapps_dd_option_selected_color, rgba(var(--jrapps_dropdownListHoverTextColor), var(--jrapps_dropdown_alphaListHoverTextColor)));
 }
